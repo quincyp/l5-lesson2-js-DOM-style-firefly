@@ -22,33 +22,49 @@
 
     <script>
         // 1. Create a variable to keep score and give it an initial value.
-    
-        // 2. Assign a variable to the firefly picture.
        
-        // 3. Assign a variable to the score div.
+    
+        // 2. Select the firefly picture by its id and assign it a variable.
+      
         
+       // 3. Select the #score p tag by its id and assign it a variable.
+       
 
-        // 4. Hide the game over div.
-     
+        // 4. Hide the game over div using the style property.
+       
+
 
         /* 5. Write a function to increase the score when the firefly is clicked. 
-        Add an event listener to the firefly and call the function on click. */
+        To call the function, add a click event listener to the firefly. */
+         function scoreCounter () {
+            score = score + 1;
+            scoreText.innerHTML = score;
+        }
 
-      
-
-     
+        firefly.addEventListener('click', scoreCounter);
+        
 
         /* 6. Create a function to move the firefly to random positions every second.
-        You will need to concatenate a string with Math.random() to generate the value for the style property.
-        Assign a variable to your function so you can clear hte interval on game over.
+        The value of the style property must be a string. You will need to concatenate a it with Math.random() to generate the value for the top and left positions.
+        Call the function with a JS timing function, and assign it a variable so you can clear the interval on game over.
         */
-      
-      
 
-        /* 7. Stop the animation and show game over after 1 minute */
 
+       function moveFirefly() {
+          let leftPos = 'left:' + Math.random() * 1200 + 'px;';
+          let topPos = 'top:' + Math.random() * 600 + 'px;';
+          firefly.style.cssText = leftPos + topPos;
+       }
       
+       let interval = setInterval(moveFirefly, 1000);
 
+        /* 7. Stop the animation and show the #game-over div after 1 minute */
+        function end(){
+            interval = clearInterval(interval);
+            gameOver.style.display = "block";
+        }
+        
+        setTimeout(end, 60000);
 
     </script>
 </body>
